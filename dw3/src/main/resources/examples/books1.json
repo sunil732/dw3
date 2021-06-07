@@ -1,0 +1,23 @@
+[
+{
+	"firstname": "sunil",
+	"lastname":  "bansal",
+	"location":  "hyd",
+	"Marks": 70
+},
+{
+	"firstname": "Asunil",
+	"lastname":  null,
+	"location":  "Ahyd",
+	"Marks": 85
+},
+{
+	"firstname": "Bsunil",
+	"lastname":  null,
+	"location":  "",
+	"Marks": 90
+}
+]
+
+	
+		

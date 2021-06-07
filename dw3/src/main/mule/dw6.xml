@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<flow name="dw6Flow" doc:id="39f9b65f-5cc8-4128-8831-2c12b987c392" >
+		<http:listener doc:name="Listener" doc:id="c4dc5761-8691-4d28-a8a4-ce1fe8d38757" config-ref="HTTP_Listener_config" path="/dw6"/>
+		<ee:transform doc:name="Transform Message" doc:id="5a4a70ab-cc5a-4c94-9c3b-4775a23c2720" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+payload groupBy (if(sizeOf($.mearchmentName)>=10) 
+"size greator than or equal to 10" else "size is less than 10"
+)
+]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<logger level="INFO" doc:name="Logger" doc:id="18cc8f01-1420-413e-b49f-3240f2346465" message="#[payload]"/>
+	</flow>
+</mule>

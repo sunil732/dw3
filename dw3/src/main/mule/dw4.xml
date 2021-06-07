@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<flow name="dw4Flow" doc:id="25b5b892-e66e-40df-af06-a24a3e30026e" >
+		<http:listener doc:name="Listener" doc:id="4b695c8a-b988-4343-afa1-364c29829fff" config-ref="HTTP_Listener_config" path="/dw4"/>
+		<ee:transform doc:name="Transform Message" doc:id="a692c60f-bdd7-4398-83a6-1d550b47b022" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+[1,2,3,4,5,6,]]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<ee:transform doc:name="Transform Message" doc:id="4120eb96-0e34-438c-9d01-26a8fb22c809" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/jason
+---
+payload +2]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<foreach doc:name="For Each" doc:id="5ad82345-2bb2-4632-adea-8c50002de737" >
+			<ee:transform doc:name="Transform Message" doc:id="44a4ba10-2e2b-4d51-a590-791126265e2f" >
+				<ee:message >
+					<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+payload ]]></ee:set-payload>
+				</ee:message>
+			</ee:transform>
+		</foreach>
+		<logger level="INFO" doc:name="Logger" doc:id="43b5c8d2-6e70-4c9a-aac0-20bdf468dfb7" message="#[payload]"/>
+	</flow>
+</mule>

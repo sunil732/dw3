@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<types:mule xmlns:types="http://www.mulesoft.org/schema/mule/types">
+  <types:catalog>
+    <types:type name="Json" format="json">
+      <types:shape format="weave" example="examples/books1-12.json"><![CDATA[%dw 2.0
+
+type Json = Array<{| mearchmentName: String |} | Null> {"example": "[{\\\"mearchmentName\\\":\\\"HelloFresh\\\"},{\\\"mearchmentName\\\":\\\"Amazon\\\"},{\\\"mearchmentName\\\":\\\"Walmart\\\"},{\\\"mearchmentName\\\":\\\"Guitar Center\\\"},null]"}
+
+]]></types:shape>
+    </types:type>
+  </types:catalog>
+  <types:enrichment select="#b9c79ed0-babe-4cc2-8ec9-c241531ea4ad">
+    <types:processor-declaration>
+      <types:input-event>
+        <types:message>
+          <types:payload type="Json"/>
+        </types:message>
+      </types:input-event>
+    </types:processor-declaration>
+  </types:enrichment>
+  <types:enrichment select="#5a400aaa-9721-4830-9b4c-cd09e9e9d16d">
+    <types:processor-declaration>
+      <types:input-event>
+        <types:message>
+          <types:payload type="Json"/>
+        </types:message>
+      </types:input-event>
+    </types:processor-declaration>
+  </types:enrichment>
+  <types:enrichment select="#5a4a70ab-cc5a-4c94-9c3b-4775a23c2720">
+    <types:processor-declaration>
+      <types:input-event>
+        <types:message>
+          <types:payload type="Json"/>
+        </types:message>
+      </types:input-event>
+    </types:processor-declaration>
+  </types:enrichment>
+  <types:enrichment select="#fffe5007-b59e-45e8-9966-5705164b4368">
+    <types:processor-declaration>
+      <types:input-event>
+        <types:message>
+          <types:payload type="Json"/>
+        </types:message>
+      </types:input-event>
+    </types:processor-declaration>
+  </types:enrichment>
+  <types:enrichment select="#17d9802e-5748-490f-b80e-97862c8d75d1">
+    <types:processor-declaration>
+      <types:input-event>
+        <types:message>
+          <types:payload type="Json"/>
+        </types:message>
+      </types:input-event>
+    </types:processor-declaration>
+  </types:enrichment>
+  <types:enrichment select="#de978904-c306-4216-b975-a18614ccee25">
+    <types:processor-declaration>
+      <types:input-event>
+        <types:message>
+          <types:payload type="Json"/>
+        </types:message>
+      </types:input-event>
+    </types:processor-declaration>
+  </types:enrichment>
+  <types:enrichment select="#26a369cb-10c0-4916-9363-09750853b35d">
+    <types:processor-declaration>
+      <types:input-event>
+        <types:message>
+          <types:payload type="Json"/>
+        </types:message>
+      </types:input-event>
+    </types:processor-declaration>
+  </types:enrichment>
+</types:mule>

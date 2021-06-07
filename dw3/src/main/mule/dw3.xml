@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="48ecc4b0-d9e0-4156-88cf-d5dcbc19ea44" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<flow name="dw3Flow" doc:id="c822e07b-d5f5-4a6a-a816-0d12126a74d7" >
+		<http:listener doc:name="Listener" doc:id="f49bcd53-f05d-4c2e-8a09-f756cb185fb0" config-ref="HTTP_Listener_config" path="/dw3"/>
+		<ee:transform doc:name="Transform Message" doc:id="b9c79ed0-babe-4cc2-8ec9-c241531ea4ad" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+//show lastname filed if it is not null
+//show location field if it is not empty
+//show marks field if mark is greater than 74
+payload map ((item,index) -> {
+	firstname: item.firstname,
+	(lastname: item.lastname) if(item.lastname != null),
+	(location:item.location) if(item.location != ""),
+	(Marks: item.Marks) if(item.Marks > 75)
+}
+)]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<logger level="INFO" doc:name="Logger" doc:id="b0089a33-5b90-433b-8579-15f8b2db64b3" message="#[payload]"/>
+	</flow>
+</mule>

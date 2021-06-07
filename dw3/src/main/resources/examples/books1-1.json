@@ -1,0 +1,22 @@
+[
+{
+	"id": 1,
+	"name":  "bansal",
+	"semester":  "hyd",
+	"Marks": 70
+},
+{
+	"id": 2,
+	"name":  "Sbansal",
+	"semester":  "hyd",
+	"Scholarshi": "yes"
+},
+{
+	"id": 3,
+	"name":  "Kbansal",
+	"semester":  "hyd",
+	"Scholarshi": "yes"
+}
+]
+	
+		
